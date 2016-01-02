@@ -4,7 +4,7 @@ board_test_array = ["1", "-", "5", "8", "-", "2", "-", "-", "-", "-", "9", "-", 
 
 
 # this method takes the board as a string, converts it to an array
-# if a cell is empty it calls the cell_possibilites method
+# if a cell is empty it calls the cell_possibilities method
 # returns a solved board as an array
 def solve(board)
   board_array = board.split(//)
@@ -42,7 +42,6 @@ def cell_possibilities(index, board_array)
     #then use those indices to get the values and put into an array
     #then .include? and push the ones that don't exist into another array
   # return said array
-  end
 end
 
 
@@ -125,5 +124,5 @@ end
 
 
 #driver code
-# p cell_location(1, board_test_array)
-# p cell_location(22, board_test_array)
+ p cell_location(1, board_test_array)
+ p cell_possibilities(1, board_test_array)
