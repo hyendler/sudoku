@@ -8,6 +8,7 @@ class Sudoku
 # returns a solved board as an array
 def solve
   board_array = @board.split(//)
+  possibilities_hash = {}
   board_array.map! do |cell|
     if cell != "-"
       cell = cell.to_i
@@ -18,10 +19,12 @@ def solve
 
   board_array.each_with_index do |cell, index|
     if cell == "-"
-      cell_possibilities(index, board_array)
+      possible_solutions=cell_possibilities(index, board_array)
+      possibilities_hash[index] = possible_solutions
     end
-  end
 
+  end
+  puts possibilities_hash
 end
 
 # this method takes a cell's index
