@@ -5,10 +5,11 @@ class Sudoku
 
 # this method takes the board as a string, converts it to an array
 # if a cell is empty it calls the cell_possibilities method
-# returns a solved board as an array
+# returns a solved board as a string
 def solve
   board_array = @board.split(//)
   possibilities_hash = {}
+
   board_array.map! do |cell|
     if cell != "-"
       cell = cell.to_i
@@ -17,14 +18,26 @@ def solve
     end
   end
 
-  board_array.each_with_index do |cell, index|
-    if cell == "-"
-      possible_solutions=cell_possibilities(index, board_array)
-      possibilities_hash[index] = possible_solutions
+  begin
+    board_array.each_with_index do |cell, index|
+      if cell == "-"
+        possible_solutions = cell_possibilities(index, board_array)
+        possibilities_hash[index] = possible_solutions
+      end
     end
 
-  end
-  puts possibilities_hash
+    in_progress_board = possibilities_hash.each_pair do |cell_index, possible_solutions|
+      if possible_solutions.length == 1
+        board_array[cell_index] = possible_solutions[0]
+        print board_array
+      end
+    end
+  end while possibilities_hash.empty?
+
+    p board_array
+
+  # call the solve method again on the updated board string (this would be an infinite loop if we give it a board that can't be reduced to one possible answer for all cells)
+  # return the solved board string (could call the #to_s method here)
 end
 
 # this method takes a cell's index
@@ -60,7 +73,6 @@ def cell_possibilities(index, board_array)
   end
   options
 end
-
 
 
 # this method takes a cell's index
@@ -145,6 +157,7 @@ end
 
   # Returns a string representing the current state of the board
   def to_s
+
   end
 end
 
