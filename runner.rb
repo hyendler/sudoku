@@ -1,4 +1,4 @@
-require_relative 'sudoku'
+require_relative 'sudoku_r2'
 
 # The sudoku puzzles that your program will solve can be found
 # in the sudoku_puzzles.txt file.
@@ -16,7 +16,17 @@ require_relative 'sudoku'
 
 
 
-board_string2 = File.readlines('sudoku_puzzles.txt')[4].chomp
-game2 = Sudoku.new(board_string2)
-game2.solve
-puts game2
+# board_string2 = File.readlines('sudoku_puzzles.txt')[4].chomp
+# game2 = Sudoku.new(board_string2)
+# print game2.solve
+
+# board_string5 = File.readlines('sudoku_puzzles.txt')[4].chomp
+# game5 = Sudoku.new(board_string5)
+# print game5.solve
+
+board_string6 = File.readlines('sudoku_puzzles.txt')[5].chomp
+game6 = Sudoku.new(board_string6)
+print game6.solve
+
+
+
