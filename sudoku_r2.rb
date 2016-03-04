@@ -24,6 +24,23 @@ class Sudoku
           possible_solutions = cell_possibilities(index, board_array)
           possibilities_hash[index] = possible_solutions
         end
+
+        # # best attempt at breaking if it never gets an empty possibility hash
+        # for i in 1..possibilities_hash.length
+        #   counter = possibilities_hash.length
+
+        #   possibilities_hash.each_pair do |index, possibilities|
+        #     if possibilities.length > 1
+        #       counter -= 1
+        #     end
+        #     if counter == 0
+        #         break
+        #         puts "Can't solve puzzle without some edjumacated guessing"
+        #     end
+        #     puts counter
+        #     puts "--"
+        #   end
+        # end
       end
 
       possibilities_hash.each_pair do |cell_index, possible_solutions|
@@ -34,8 +51,6 @@ class Sudoku
       end
     end while !possibilities_hash.empty?
 
-   # @board = board_array
-   # return @board
    board_array
     # call the solve method again on the updated board string (this would be an infinite loop if we give it a board that can't be reduced to one possible answer for all cells)
     # return the solved board string (could call the #to_s method here)
@@ -204,6 +219,20 @@ end
 
 
 
+# Sunday pseudocode for recursive educated guess problem
+
+# def edu_guess(board)
+#   base case 1: possibilities_hash is empty, in which case return solved board
+#   base case 2: check the board (how you check it is you see if each row, column, and box cell has any duplicates).  If it has duplicates, go back up recursion/decision node.  If it does not duplicates, keep going
+#   if possibilities_hash has any values of length one, do what we did before which was update the board with the lengths of one
+#   else if possibilities_hash does NOT have any values of length one, make an educated guess.
+#       make an educated guess by finding the short value array and then choose one.  If there are mutliple of the same length, take the first one and input the guess into the board, and somehow possibly store the guess
+#   edu_guess(board)
+# end
+
+# questions/issues to solve
+#   how does it know which one it guessed last time,
+    # push to a new hash that records indices and the past guesses
+#
 
 
-# Main question is how does this solve
