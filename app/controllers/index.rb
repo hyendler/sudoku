@@ -5,5 +5,5 @@ end
 
 get '/update' do
   @game = Game.first.solve
-
+  
 end

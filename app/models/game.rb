@@ -11,13 +11,14 @@ class Game < ActiveRecord::Base
 
   def display_solved_board(board_array)
   	board_hash = {}
-  	
+
   end
 
   def solve
   	@board = self["board"]
     board_array = @board.split(//)
     possibilities_hash = {}
+    board_hash = {}
 
     board_array.map! do |cell|
       if cell != "-"
@@ -38,12 +39,13 @@ class Game < ActiveRecord::Base
       possibilities_hash.each_pair do |cell_index, possible_solutions|
         if possible_solutions.length == 1
           board_array[cell_index] = possible_solutions[0]
+          board_hash[cell_index] = possible_solutions[0]
           possibilities_hash.delete(cell_index)
         end
       end
     end while !possibilities_hash.empty?
 
-   board_array
+   board_hash
     # call the solve method again on the updated board string (this would be an infinite loop if we give it a board that can't be reduced to one possible answer for all cells)
     # return the solved board string (could call the #to_s method here)
   end
