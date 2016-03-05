@@ -1,10 +1,21 @@
 class Game < ActiveRecord::Base
-	
+
   # this method takes the board as a string, converts it to an array
   # if a cell is empty it calls the cell_possibilities method
   # returns a solved board as a string
+
+  def display_initial_board
+  	@board = self["board"]
+    board_array = @board.split(//).to_a.each_slice(9).to_a
+  end
+
+  def display_solved_board(board_array)
+  	board_hash = {}
+  	
+  end
+
   def solve
-  	@board = self.board
+  	@board = self["board"]
     board_array = @board.split(//)
     possibilities_hash = {}
 
