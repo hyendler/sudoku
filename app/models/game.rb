@@ -6,12 +6,10 @@ class Game < ActiveRecord::Base
 
   def display_initial_board
   	@board = self["board"]
-    board_array = @board.split(//).to_a.each_slice(9).to_a
-  end
-
-  def display_solved_board(board_array)
-  	board_hash = {}
-
+    board_array = @board.split(//).to_a
+    board_array = board_array.map {|cell| (cell=="-" ? cell=nil : cell)}
+    print board_array
+    board_array.each_slice(9).to_a
   end
 
   def solve

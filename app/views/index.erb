@@ -3,17 +3,23 @@
     <h1>Sudoku Solver</h1>
   </div>
   <div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-  <table>
-    <% count = 0 %>
-    <% @game.each do |row| %>
-      <tr class="text-center">
-      <% row.each do |cell| %>
-        <td id="<%= count %>"><%= cell %></td>
-        <% count += 1 %>
-      <% end %>
-      </tr>
-    <% end %>
-  </table>
+    <div class="col-md-6 board">
+      <table>
+        <% count = 0 %>
+        <% @game.each do |row| %>
+          <tr class="text-center">
+          <% row.each do |cell| %>
+            <td>
+            <div id="<%= count %>"><%= cell %>
+            </td>
+            <% count += 1 %>
+          <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
+  <div class="row text-center">
+    <a href="/solve/1" class="btn btn-primary">Solve Game</a>
+  </div> 
 </div>

@@ -3,7 +3,11 @@ get '/' do
   erb :index
 end
 
-get '/update' do
-  @game = Game.first.solve
-  
+get '/solve/:id' do
+  @game = Game.find(params[:id]).solve.to_a
+  @game.to_json
+end
+
+get '/show' do
+	@game = Game
 end
