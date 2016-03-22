@@ -18,9 +18,12 @@ var replaceButtonHref = function(action) {
 
 var displaySolvedGame = function(e){
 	e.preventDefault();
-	var action = $(this).attr('href')
+	console.log(e)
+	var action = $(this).attr('href');
+	console.log(action)
 	$.get(action)
 	.done(function(response){
+		console.log(response);
 		var array = jQuery.parseJSON(response);
 		var delayTime = 0;
 		var color1 = 40;
@@ -34,7 +37,7 @@ var displaySolvedGame = function(e){
 			color3 -= 1;
 		}
 		//display solve another game button
-		replaceButtonHref(action);
+		// replaceButtonHref(action);
 
 	})
 }

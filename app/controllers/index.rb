@@ -4,8 +4,13 @@ get '/' do
 end
 
 get '/solve/:id' do
-  @game = Game.find(params[:id]).solve.to_a
-  @game.to_json
+	if params[:id] == "1"
+	  @game = Game.find(params[:id]).solve.to_a
+	  @game.solve.to_a.to_json
+	else
+		@game = Game.find(params[:id])
+		@game.solve.to_a.to_json
+	end
 end
 
 get '/show' do
