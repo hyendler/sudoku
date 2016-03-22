@@ -1,14 +1,22 @@
-class Sudoku
-  def initialize(board_string)
-    @board = board_string
-  end
+class Game < ActiveRecord::Base
 
   # this method takes the board as a string, converts it to an array
   # if a cell is empty it calls the cell_possibilities method
   # returns a solved board as a string
+
+  def display_initial_board
+  	@board = self["board"]
+    board_array = @board.split(//).to_a
+    board_array = board_array.map {|cell| (cell=="-" ? cell=nil : cell)}
+    print board_array
+    board_array.each_slice(9).to_a
+  end
+
   def solve
+  	@board = self["board"]
     board_array = @board.split(//)
     possibilities_hash = {}
+    board_hash = {}
 
     board_array.map! do |cell|
       if cell != "-"
@@ -29,14 +37,13 @@ class Sudoku
       possibilities_hash.each_pair do |cell_index, possible_solutions|
         if possible_solutions.length == 1
           board_array[cell_index] = possible_solutions[0]
+          board_hash[cell_index] = possible_solutions[0]
           possibilities_hash.delete(cell_index)
         end
       end
     end while !possibilities_hash.empty?
 
-   # @board = board_array
-   # return @board
-   board_array
+   board_hash
     # call the solve method again on the updated board string (this would be an infinite loop if we give it a board that can't be reduced to one possible answer for all cells)
     # return the solved board string (could call the #to_s method here)
   end
@@ -202,8 +209,3 @@ end
             # push to the possibilities_hash with the cell index as the key and the array as the value
 
 
-
-
-
-
-# Main question is how does this solve

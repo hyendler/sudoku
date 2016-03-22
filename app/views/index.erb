@@ -1,23 +1,25 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <div class="row text-center">
+    <h1>Sudoku Solver</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6 board">
+      <table>
+        <% count = 0 %>
+        <% @game.each do |row| %>
+          <tr class="text-center">
+          <% row.each do |cell| %>
+            <td>
+            <div id="<%= count %>"><%= cell %>
+            </td>
+            <% count += 1 %>
+          <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="row text-center">
+    <a href="/solve/1" class="btn btn-primary" id="solve-btn">Solve Game</a>
+  </div> 
 </div>
